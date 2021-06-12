@@ -304,7 +304,7 @@ final class ObservableMoyaSpec: QuickSpec {
             }
 
             it("ignores invalid data") {
-                let data = Data(bytes: [0x11FFFF] as [UInt32], count: 1) //Byte exceeding UTF8
+                let data = Data(bytes: [0x11FFFF] as [UInt32], count: 1) // Byte exceeding UTF8
                 let observable = Response(statusCode: 200, data: data).asObservable()
 
                 var receivedError: MoyaError?

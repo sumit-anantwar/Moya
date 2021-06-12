@@ -98,7 +98,7 @@ final class EndpointSpec: QuickSpec {
 
             context("when task is .downloadDestination") {
                 itBehavesLike("endpoint with no request property changed") {
-                    let destination: DownloadDestination = { url, response in
+                    let destination: DownloadDestination = { url, _ in
                         return (destinationURL: url, options: [])
                     }
                     return ["task": Task.downloadDestination(destination), "endpoint": self.simpleGitHubEndpoint]
@@ -118,7 +118,7 @@ final class EndpointSpec: QuickSpec {
                 itBehavesLike("endpoint with encoded parameters") {
                     let parameters = ["Nemesis": "Harvey"]
                     let encoding = JSONEncoding.default
-                    let destination: DownloadDestination = { url, response in
+                    let destination: DownloadDestination = { url, _ in
                         return (destinationURL: url, options: [])
                     }
                     let endpoint = self.simpleGitHubEndpoint.replacing(task: .downloadParameters(parameters: parameters, encoding: encoding, destination: destination))

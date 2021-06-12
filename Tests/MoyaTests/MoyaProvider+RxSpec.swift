@@ -148,12 +148,12 @@ final class MoyaProviderRxSpec: QuickSpec {
         describe("a provider with progress tracking") {
             var provider: MoyaProvider<GitHubUserContent>!
             beforeEach {
-                //delete downloaded filed before each test
+                // delete downloaded filed before each test
                 let directoryURLs = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
                 let file = directoryURLs.first!.appendingPathComponent("logo_github.png")
                 try? FileManager.default.removeItem(at: file)
 
-                //`responseTime(-4)` equals to 1000 bytes at a time. The sample data is 4000 bytes.
+                // `responseTime(-4)` equals to 1000 bytes at a time. The sample data is 4000 bytes.
                 HTTPStubs.stubRequests(passingTest: {$0.url!.path.hasSuffix("logo_github.png")}, withStubResponse: { _ in
                     return HTTPStubsResponse(data: GitHubUserContent.downloadMoyaWebContent("logo_github.png").sampleData, statusCode: 200, headers: nil).responseTime(-4)
                 })

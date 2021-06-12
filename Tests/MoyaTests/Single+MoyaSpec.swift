@@ -295,7 +295,7 @@ final class SingleMoyaSpec: QuickSpec {
             }
 
             it("ignores invalid data") {
-                let data = Data(bytes: [0x11FFFF] as [UInt32], count: 1) //Byte exceeding UTF8
+                let data = Data(bytes: [0x11FFFF] as [UInt32], count: 1) // Byte exceeding UTF8
                 let single = Response(statusCode: 200, data: data).asSingle()
 
                 var receivedError: MoyaError?
